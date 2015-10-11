@@ -10,13 +10,14 @@ from flask import (
 )
 from werkzeug import check_password_hash, generate_password_hash
 
-from app import db, mail
+from app import app, db
 from app.authentication.forms import LoginForm, RecoverPassForm
 from app.authentication.models import User
 from flask_mail import Mail, Message
 
 mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
 
+mail = Mail(app)
 
 @mod_auth.route('/signin/', methods=['GET', 'POST'])
 def signin():
@@ -34,7 +35,7 @@ def signin():
     return render_template("authentication/signin.html", form=form)
 
 
-@mod_auth.route('/recover_pass', methods=('GET','POST'))
+@mod_auth.route('/recover_pass/', methods=('GET','POST'))
 def recover_pass():
     form = RecoverPassForm()
 
@@ -53,7 +54,7 @@ def recover_pass():
 
     return render_template("recover_pass.html", form=form)
 
-@mod_auth.route('/send_mail')
+@mod_auth.route('/send_mail/')
 def send_mail(email,url):
     msg = Message("Recupera tu Contrasenia", sender="pruebas.cms@asacoop.com",
      recipients=[email])
