@@ -3,7 +3,7 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import session, redirect, current_app
 
 
-class User(db.model):
+class User(db.Model):
 
     __tablename__ = 'auth_user'
 
