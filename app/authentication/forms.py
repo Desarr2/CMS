@@ -1,6 +1,6 @@
 from flask.ext.wtf import Form # , RecaptchaField
 from wtforms import TextField, PasswordField # BooleanField
-from wtforms.validators import Required, Email, EqualTo
+from wtforms.validators import Required, DataRequired, Email, EqualTo
 
 class RecoverPassForm(Form):
 	email = TextField('Email Address', [Email(), Required(message='Forgot your email address?')])
