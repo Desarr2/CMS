@@ -31,11 +31,3 @@ def signin():
         flash('Wrong email or password', 'error-message')
 
     return render_template("authentication/signin.html", form=form)
-
-@mod_auth.route('/send_mail')
-def send_mail(email,url):
-    msg = Message("Recupera tu Contrasenia", sender="pruebas.cms@asacoop.com",
-     recipients=[email])
-    msg.body = "Este mensaje te llego porque solicitaste recuperar tu contrasenia, utiliza esta direccion de correo " + url
-    mail.send(msg)
-    return redirect('/index')
