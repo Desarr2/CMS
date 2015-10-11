@@ -37,16 +37,10 @@ app.register_blueprint(auth_module)
 # Build the database:
 # This will create the database file using SQLAlchemy
 db.create_all()
-<<<<<<< HEAD
-=======
-
-
-
 
 app.config['MAIL_SERVER'] = 'evop5.areserver.net'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_SSL'] = True
 app.config['MAIL_USERNAME'] = 'pruebas.cms@asacoop.com'
 app.config['MAIL_PASSWORD'] = 'admin1234'
->>>>>>> b21e59e769f5ec7d05a0edcda9192b130e1765ba
 mail = Mail(app)
