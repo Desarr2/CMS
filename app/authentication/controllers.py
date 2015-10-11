@@ -14,6 +14,7 @@ from app import app, db
 from app.authentication.forms import LoginForm, RecoverPassForm
 from app.authentication.models import User
 from flask_mail import Mail, Message
+from flask.ext.login import login_required, logout_user
 
 mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -76,3 +77,11 @@ def send_mail(email,url):
     msg.body = "Este mensaje te llego porque solicitaste recuperar tu contrasenia, utiliza esta direccion de correo " + url
     mail.send(msg)
     return redirect('/index')
+<<<<<<< HEAD
+=======
+
+@mod_auth.route('/singup/')
+def singup():
+	logout_user()
+	return render_template("authentication/signup.html")
+>>>>>>> 6f03b02e3af6f7b536a5af2e7fe53e07bbc2ac42
