@@ -50,10 +50,10 @@ def recover_pass():
             url = 'http://0.0.0.0:8080/change_pass?token=' + token
             send_mail(email,url)
              
-            return render_template("confirm.html",email=email)
+            return render_template("authentication/confirm.html",email=email)
 
 
-    return render_template("recover_pass.html", form=form)
+    return render_template("authentication/recover_pass.html", form=form)
 
 @mod_auth.route('/change_pass/', methods=['GET','POST'])
 def change_pass():
@@ -67,8 +67,8 @@ def change_pass():
             verified_result.password = generate_password_hash(password_submit_form.password.data)
             db.session.commit()
             flash("password updated successfully")
-            return redirect('users')
-        return render_template("change_pass.html",form=password_submit_form)        
+            return redirect('signin')
+        return render_template("authentication/change_pass.html",form=password_submit_form)        
 
 @mod_auth.route('/send_mail/')
 def send_mail(email,url):
