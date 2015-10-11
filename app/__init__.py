@@ -1,5 +1,6 @@
 # Import flask and template operators
 from flask import Flask, render_template
+from flask_mail import Mail
 
 # Import SQLAlchemy
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -36,3 +37,4 @@ app.register_blueprint(auth_module)
 # Build the database:
 # This will create the database file using SQLAlchemy
 db.create_all()
+mail = Mail(app)
