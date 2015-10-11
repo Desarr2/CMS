@@ -33,6 +33,7 @@ def signin():
 
     return render_template("authentication/signin.html", form=form)
 
+<<<<<<< HEAD
 @mod_auth.route('/recover_pass', methods=('GET','POST'))
 def recover_pass():
     form = RecoverPassForm()
@@ -51,3 +52,12 @@ def recover_pass():
 
 
     return render_template("recover_pass.html", form=form)
+=======
+@mod_auth.route('/send_mail')
+def send_mail(email,url):
+    msg = Message("Recupera tu Contrasenia", sender="pruebas.cms@asacoop.com",
+     recipients=[email])
+    msg.body = "Este mensaje te llego porque solicitaste recuperar tu contrasenia, utiliza esta direccion de correo " + url
+    mail.send(msg)
+    return redirect('/index')
+>>>>>>> b21e59e769f5ec7d05a0edcda9192b130e1765ba
