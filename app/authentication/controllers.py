@@ -54,6 +54,21 @@ def recover_pass():
 
     return render_template("recover_pass.html", form=form)
 
+@mod_auth.route('/change_pass/', methods=['GET','POST'])
+def change_pass():
+    token = request.args.get('token',None)
+    verified_result = User.verify_token(token)
+    if token and verified_result:
+        print verified_result
+        password_submit_form = ResetPasswordSubmit(request.form)
+
+        if password_submit_form.validate_on_submit():
+            verified_result.password = generate_password_hash(password_submit_form.password.data)
+            db.session.commit()
+            flash("password updated successfully")
+            return redirect('users')
+        return render_template("change_pass.html",form=password_submit_form)        
+
 @mod_auth.route('/send_mail/')
 def send_mail(email,url):
     msg = Message("Recupera tu Contrasenia", sender="pruebas.cms@asacoop.com",
