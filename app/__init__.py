@@ -1,5 +1,6 @@
 # Import flask and template operators
 from flask import Flask, render_template
+from flask_mail import Mail
 
 # Import SQLAlchemy
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -36,3 +37,13 @@ app.register_blueprint(auth_module)
 # Build the database:
 # This will create the database file using SQLAlchemy
 db.create_all()
+
+
+
+
+app.config['MAIL_SERVER'] = 'evop5.areserver.net'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USERNAME'] = 'pruebas.cms@asacoop.com'
+app.config['MAIL_PASSWORD'] = 'admin1234'
+mail = Mail(app)
