@@ -1,24 +1,24 @@
+<!DOCTYPE html>
 <html>
-<head><title>Ejemplo de formulario sencillo</title></head>
+<head>
+	<title>Create Sections</title>
+</head>
 <body>
- 
-<h3>Agregar seccion</h3>
- 
-<form action="http://www.librosweb.es/maneja_formulario.php" method="post">
-  Nombre de la seccion:
-  <input type="text" name="nombre" value="" />
-  </br>
-  Descripcion:
-  <br>
-<textarea name="eltexto" rows="7" cols="40">
-</textarea>
-
-	
-  <br/><br>
- 
-  <input type="submit" value="Guardar" >
-  <input type="reset" value="Borrar">
-</form>
- 
+<center>
+<h1>Crear Seccion</h1>
+<form action="" method="post" name="change_pass">
+		{{ form.hidden_tag() }}
+		<p>
+			Digite el nombre de la nueva seccion:<br>
+			{{ form.section(size = 48) }}<br><br>
+			Ingrese la descripcion de la seccion:<br>
+			{{ form.description(size = 48) }}<br><br>
+			{% for error in form.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+			{% endfor %}<br>
+		</p>
+		<p><input type="submit" value="Aceptar"> </p>
+	</form>
+	</center>
 </body>
 </html>
