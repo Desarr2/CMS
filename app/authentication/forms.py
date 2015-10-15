@@ -1,5 +1,5 @@
 from flask.ext.wtf import Form # , RecaptchaField
-from wtforms import StringField, BooleanField, PasswordField, TextField  # BooleanField
+from wtforms import StringField, BooleanField, PasswordField, TextField , TextAreaField # BooleanField
 from wtforms.validators import Required, DataRequired, Email, EqualTo
 
 class RecoverPassForm(Form):
@@ -16,7 +16,11 @@ class LoginForm(Form):
                 Required(message='Must provide a password. ;-)')])
 
 class CreateUserForm(Form):
-		id = StringField('id', validators=[DataRequired()])
-		nickname = StringField('nickname', validators=[DataRequired()])
-		email = StringField('email', validators=[DataRequired()])
-		password = PasswordField('pass', validators=[DataRequired()])
+	id = StringField('id', validators=[DataRequired()])
+	nickname = StringField('nickname', validators=[DataRequired()])
+	email = StringField('email', validators=[DataRequired()])
+	password = PasswordField('pass', validators=[DataRequired()])
+
+class CreateSectionForm(Form):
+	section = StringField('section', validators=[DataRequired()])
+	description = TextAreaField('description')	
