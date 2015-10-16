@@ -6,7 +6,14 @@
 <body>
 <center>
 <h1>Ver Secciones</h1>
-<table border="1">
+<table>
+	<tr>
+		<td><a href="/sec/create_sections"><img width="5%" height="5%" align="right" src="{{url_for('static', filename='Images/add.png')}}"></a>
+		</td>
+	</tr>
+	<tr>
+	<td>
+<table border="1">	
 	<tr>
 		<td>Id</td>
 		<td>Nombre de la Seccion</td>
@@ -15,15 +22,19 @@
 		<td>Modificar</td>	
 
 	</tr>
-	{% for item in secciones %}	
+	{% for item in sections %}	
 	<tr>
 		<td>{{item.id}}</td>
 		<td>{{item.section_name}}</td>
 		<td>{{item.description}}</td>
-		<td><center><a href="http:/0.0.0.0:8080/sect/delete_section?id={{item.id}}"><img width="30%"  height="30%" src="{{url_for('static', filename='Images/delete.png')}}"></a></center></td>
-		<td><center><a href="http:/0.0.0.0:8080/sect/modify_section?id={{item.id}}"><img width="30%"  height="30%" src="{{url_for('static', filename='Images/edit.png')}}"></a></center></td>
+		<td><center><a href="/sec/delete_sections?id={{item.id}}"><img width="30%" height="30%" src="{{url_for('static', filename='Images/delete.png')}}"></a></center></td>
+		<td><center><a href="/sec/modify_sections?id={{item.id}}"><img width="30%" height="30%" src="{{url_for('static', filename='Images/edit.png')}}"></a></center></td>
 	</tr>
 	{%endfor%}
+
+</table>
+</td>
+</tr>
 </table>
 	
 	</center>

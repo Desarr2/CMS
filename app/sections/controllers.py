@@ -31,4 +31,4 @@ def create_section():
 @mod_sec.route('/views_sections/')
 def views_sections():
 	sections = Sections.query.filter().all()
-	return render_template("sections/view_sections.html", secciones = sections)
+	return render_template("sections/view_sections.html", sections = sections)
