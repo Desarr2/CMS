@@ -31,7 +31,8 @@ def create_section():
 @mod_sec.route('/views_sections/')
 def views_sections():
 	sections = Sections.query.filter().all()
-	return render_template("sections/view_sections.html", secciones = sections)
+
+    return render_template("sections/view_sections.html", secciones = sections)
 
 @mod_sec.route('/modify_sections/', methods=['GET','POST'])
 def modify_sections():
@@ -52,3 +53,6 @@ def modify_sections():
         return redirect("/sec/views_sections")
 
     return render_template("sections/modify_sections.html",form=form)
+
+	
+
