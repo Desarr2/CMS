@@ -10,15 +10,13 @@ from flask import (
 )
 from werkzeug import check_password_hash, generate_password_hash
 
-from app import app, db
-from app.authentication.forms import LoginForm, RecoverPassForm
+from app import app, db, mail
+from app.authentication.forms import LoginForm, RecoverPassForm, ResetPasswordSubmit
 from app.authentication.models import User
 from flask_mail import Mail, Message
 from flask.ext.login import login_required, logout_user
 
 mod_auth = Blueprint('auth', __name__, url_prefix='/auth')
-
-mail = Mail(app)
 
 @mod_auth.route('/signin/', methods=['GET', 'POST'])
 def signin():
@@ -47,18 +45,17 @@ def recover_pass():
         if user:
             token = user.get_token()
             print token
-            url = 'http://0.0.0.0:8080/change_pass?token=' + token
+            url = 'http://0.0.0.0:8080/auth/change_pass?token=' + token
             send_mail(email,url)
-             
             return render_template("authentication/confirm.html",email=email)
 
-
     return render_template("authentication/recover_pass.html", form=form)
+
 
 @mod_auth.route('/change_pass/', methods=['GET','POST'])
 def change_pass():
     token = request.args.get('token',None)
-    verified_result = User.verify_token(token)
+    verified_result = User.verify_token_email(token)
     if token and verified_result:
         print verified_result
         password_submit_form = ResetPasswordSubmit(request.form)
@@ -67,18 +64,19 @@ def change_pass():
             verified_result.password = generate_password_hash(password_submit_form.password.data)
             db.session.commit()
             flash("password updated successfully")
-            return redirect('signin')
-        return render_template("authentication/change_pass.html",form=password_submit_form)        
+            return render_template('authentication/base.html')
+        return render_template("authentication/change_pass.html",form=password_submit_form)      
+
 
 @mod_auth.route('/send_mail/')
 def send_mail(email,url):
     msg = Message("Recupera tu Contrasenia", sender="pruebas.cms@asacoop.com",
-     recipients=[email])
+    recipients=[email])
     msg.body = "Este mensaje te llego porque solicitaste recuperar tu contrasenia, utiliza esta direccion de correo " + url
     mail.send(msg)
-    return redirect('/index')
+
 
 @mod_auth.route('/logout/')
 def singup():
-	logout_user()
-	return render_template("authentication/logout.html")
+    logout_user()
+    return render_template("authentication/logout.html")
