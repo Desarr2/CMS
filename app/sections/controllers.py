@@ -29,14 +29,7 @@ def create_section():
         db.session.add(section)
         db.session.commit()
         flash("sections created")
-
-        return render_template("sections/create_sections.html",form = form)
+        sections = Sections.query.filter().all()
+        return redirect("/sec/views_sections")
     return render_template("sections/create_sections.html",form = form)
-
-@mod_sec.route('/views_sections/')
-def views_sections():
-	sections = Sections.query.filter().all()
-
-    return render_template("sections/view_sections.html", section = sections)
-
 
