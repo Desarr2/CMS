@@ -8,7 +8,7 @@ class Sections(db.Model):
 
     id       = db.Column('id', db.Integer, primary_key=True, \
                 autoincrement='ignore_fk')
-    section_name = db.Column(db.String(128),  nullable=False, unique=True)
+    section_name = db.Column(db.String(128),  nullable=False)
     description = db.Column(db.String(128),  nullable=True)
 
     def __init__(self, section_, description_):

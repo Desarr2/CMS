@@ -10,7 +10,7 @@ from flask import (
 )
 
 from app import app, db
-from app.sections.forms import CreateSectionForm
+from app.sections.forms import CreateSectionForm, EditSectionForm
 from app.sections.models import Sections
 
 
@@ -38,15 +38,12 @@ def modify_sections():
     id_  = request.args.get('id',None)
     section = Sections.query.get(id_)
 
-    form = EditSectionForm(request.form)
-
-    form.section.data = section.section_name
-    form.description.data = section.description
+    form_edit = EditSectionForm(request.form)
     
-    if form.validate_on_submit():
-        section.section_name = form.section.data
-        section.description = form.description.data
+    if form_edit.validate_on_submit():
+        section.section_name = form_edit.section.data
+        section.description =  form_edit.description.data
         db.session.commit()
         flash("Row edited")
         return redirect("/sec/views_sections")
-    return render_template("sections/views_sections.html",form = form)
+    return render_template("sections/modify_sections.html",form = form_edit)
