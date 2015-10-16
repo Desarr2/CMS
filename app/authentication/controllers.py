@@ -70,4 +70,4 @@ def send_mail(email,url):
 
 @mod_auth.route('/logout/')
 def logout():
-	# return render_template("authentication/logout.html")
+	return render_template("authentication/logout.html")
