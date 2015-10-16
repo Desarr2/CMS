@@ -29,7 +29,24 @@ def create_section():
         db.session.add(section)
         db.session.commit()
         flash("sections created")
-        sections = Sections.query.filter().all()
         return redirect("/sec/views_sections")
     return render_template("sections/create_sections.html",form = form)
 
+@mod_sec.route('/modify_sections/', methods=['GET','POST'])
+def modify_sections():
+    
+    id_  = request.args.get('id',None)
+    section = Sections.query.get(id_)
+
+    form = EditSectionForm(request.form)
+
+    form.section.data = section.section_name
+    form.description.data = section.description
+    
+    if form.validate_on_submit():
+        section.section_name = form.section.data
+        section.description = form.description.data
+        db.session.commit()
+        flash("Row edited")
+        return redirect("/sec/views_sections")
+    return render_template("sections/views_sections.html",form = form)
