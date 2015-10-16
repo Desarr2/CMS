@@ -47,3 +47,14 @@ def modify_sections():
         flash("Row edited")
         return redirect("/sec/views_sections")
     return render_template("sections/modify_sections.html",form = form_edit)
+
+@mod_sec.route('/delete_sections/', methods=['GET','POST'])
+def delete_sections():
+   
+   id_  = request.args.get('id',None)
+   section = Sections.query.get(id_)
+   print section
+   db.session.delete(section)
+   db.session.commit()
+   flash("Row Deleted")
+   return redirect("/sec/views_sections")
