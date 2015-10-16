@@ -79,6 +79,5 @@ def send_mail(email,url):
     return redirect('/index')
 
 @mod_auth.route('/logout/')
-def singup():
-	logout_user()
+def logout():
 	return render_template("authentication/logout.html")

@@ -1,7 +1,7 @@
 from app import db
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import session, redirect, current_app
-
+from werkzeug import generate_password_hash, check_password_hash
 
 class User(db.Model):
 
