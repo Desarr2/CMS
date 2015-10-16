@@ -32,7 +32,7 @@ def create_section():
 def views_sections():
 	sections = Sections.query.filter().all()
 
-    return render_template("sections/view_sections.html", secciones = sections)
+    return render_template("sections/view_sections.html", section = sections)
 
 @mod_sec.route('/modify_sections/', methods=['GET','POST'])
 def modify_sections():
