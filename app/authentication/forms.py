@@ -20,7 +20,3 @@ class CreateUserForm(Form):
 	nickname = StringField('nickname', validators=[DataRequired()])
 	email = StringField('email', validators=[DataRequired()])
 	password = PasswordField('pass', validators=[DataRequired()])
-
-class CreateSectionForm(Form):
-	section = StringField('section', validators=[DataRequired()])
-	description = TextAreaField('description')	
