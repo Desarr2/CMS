@@ -48,7 +48,7 @@ def modify_sections():
         return redirect("/sec/views_sections")
     return render_template("sections/modify_sections.html",form = form_edit)
 
-@mod_sec.route('/delete_sections/', methods=['GET','POST'])
+@mod_sec.route('/delete_sections/', methods=['GET'])
 def delete_sections():
    
    id_  = request.args.get('id',None)

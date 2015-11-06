@@ -29,9 +29,6 @@ def not_found(error):
 
 # Import a module / component using its blueprint handler variable (mod_auth)
 
-
-db.create_all()
-
 app.config['MAIL_SERVER'] = 'evop5.areserver.net'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_SSL'] = True
@@ -40,15 +37,17 @@ app.config['MAIL_PASSWORD'] = 'admin1234'
 mail=Mail(app)
 
 # Import a module / component using its blueprint handler variable (mod_auth)
+from app.authentication.controllers import mod_auth as auth_module
 from app.sections.controllers import mod_sec as sec_module
 
-db.create_all()
 
 
 # Register blueprint(s)
+app.register_blueprint(auth_module)
 app.register_blueprint(sec_module)
 # app.register_blueprint(xyz_module)
 # ..
 
 # Build the database:
 # This will create the database file using SQLAlchemy
+db.create_all()
