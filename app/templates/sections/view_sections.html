@@ -18,13 +18,14 @@
 		<td>Eliminar</td>
 		<td>Modificar</td>	
 
+
 	</tr>
 	{% for item in sections %}	
 	<tr>
 		<td>{{item.id}}</td>
 		<td>{{item.section_name}}</td>
 		<td>{{item.description}}</td>
-		<td><center><a href="/sec/delete_sections?id={{item.id}}"><img width="30%" height="30%" src="{{url_for('static', filename='Images/delete.png')}}"></a></center></td>
+		<td><center><a href="/sec/section/{{item.id}}"><img width="30%" height="30%" src="{{url_for('static', filename='Images/delete.png')}}"></a></center></td>
 		<td><center><a href="/sec/modify_sections?id={{item.id}}"><img width="30%" height="30%" src="{{url_for('static', filename='Images/edit.png')}}"></a></center></td>
 	</tr>
 	{%endfor%}

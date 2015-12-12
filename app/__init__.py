@@ -1,6 +1,7 @@
 # Import flask and template operators
 from flask import Flask, render_template
 from flask_mail import Mail
+from flask_restful import Resource, Api, url_for
 
 # Import SQLAlchemy
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -36,10 +37,13 @@ app.config['MAIL_USERNAME'] = 'pruebas.cms@asacoop.com'
 app.config['MAIL_PASSWORD'] = 'admin1234'
 mail=Mail(app)
 
+# RESTful
+api = Api(app, default_mediatype='application/xml')
+
 # Import a module / component using its blueprint handler variable (mod_auth)
 from app.authentication.controllers import mod_auth as auth_module
-from app.sections.controllers import mod_sec as sec_module
-
+#from app.sections.controllers import mod_sec as sec_module
+from app.sections.controllers import api_db as sec_module
 
 
 # Register blueprint(s)

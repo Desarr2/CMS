@@ -11,7 +11,6 @@ class Sections(db.Model):
     description = db.Column(db.String(128),  nullable=True)
 
     def __init__(self, section_, description_):
-           
        self.section_name = section_.title()
        self.description = description_
 
