@@ -38,7 +38,7 @@ app.config['MAIL_PASSWORD'] = 'admin1234'
 mail=Mail(app)
 
 # RESTful
-api = Api(app, default_mediatype='application/xml')
+api = Api(app)
 
 # Import a module / component using its blueprint handler variable (mod_auth)
 from app.authentication.controllers import mod_auth as auth_module

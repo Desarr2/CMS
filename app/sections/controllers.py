@@ -23,15 +23,6 @@ api = Api(api_db)
 
 #mod_sec = Blueprint('sec', __name__, url_prefix='/sec')
 
-def output_xml(data, code, headers=None):
-    """Makes a Flask response with a XML encoded body"""
-    resp = make_response(dumps({'response' :data}), code)
-    resp.headers.extend(headers or {})
-    return resp
-
-api.representations['application/xml'] = output_xml
-
-
 parser = reqparse.RequestParser()
 parser.add_argument('section_name', dest='section_name', location='form', type=str)
 parser.add_argument('description', dest='description', location='form', type=str)
